@@ -54,11 +54,13 @@ def to_dec(init_base: int, num: str) -> int:
 
 def from_dec(dest_base: int, num: int) -> str:
     dest_num = ""
-    while num != 0:
+    while True:
         if show_operations:
             print(f"{num}/{dest_base} - > {num % dest_base}")
         dest_num += n_to_s(num % dest_base)
         num = int(num / dest_base)
+        if num == 0:
+            break
     return dest_num[::-1]
 
 
@@ -67,6 +69,8 @@ def convert(to_base: int, from_base: int, num_to_convert: str) -> str:
         return num_to_convert
     if from_base == 10:
         return from_dec(to_base, int(num_to_convert))
+    if to_base == 10:
+        return str(to_dec(from_base, num_to_convert))
     return from_dec(to_base, to_dec(from_base, num_to_convert))
 
 
