@@ -44,7 +44,8 @@ def n_to_s(target):
 
 def to_dec(init_base: int, num: str) -> int:
     res = 0
-    num_whole, num_partial = num.split(".")
+    num_whole, *num_partial = num.split(".")
+    num_partial = "".join(num_partial)
     rev_num_whole = num_whole[::-1]
     for power, digit in enumerate(rev_num_whole):
         if show_operations:
